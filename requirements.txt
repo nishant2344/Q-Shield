@@ -2,3 +2,4 @@ cryptography>=48
 streamlit
 plotly
 pandas
+flask

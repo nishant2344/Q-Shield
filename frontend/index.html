@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q-Shield — Post-Quantum Cryptography Readiness & Hybrid Proxy</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand" id="nav-brand" role="button" tabindex="0">
+        <span class="brand-mark">QS</span>
+        <span class="brand-name">Q-Shield</span>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <button type="button" class="nav-link active" data-view="home">Project Overview</button>
+        <button type="button" class="nav-link" data-view="workbench">Security Workbench</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       PAGE 1: PROJECT OVERVIEW (LANDING PAGE)
+  ========================================================== -->
+  <main id="view-home" class="view active">
+    <section class="hero-section">
+      <div class="container">
+        <span class="pill">NIST FIPS 203 &amp; FIPS 204 Compliant</span>
+        <h1>Post-Quantum Cryptography Readiness &amp; Hybrid Proxy</h1>
+        <p class="lead">
+          Q-Shield helps engineering teams find quantum-vulnerable cryptography in Python codebases,
+          audit live HTTPS endpoints, generate compliance CBOM reports, and tunnel traffic through an
+          <strong>X25519 + ML-KEM-768</strong> hybrid proxy.
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-primary" id="btn-enter-workbench">
+            Open Security Workbench &rarr;
+          </button>
+          <button type="button" class="btn btn-secondary" data-jump-tab="scanner">
+            Try AST Code Scanner
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Why Q-Shield?</h2>
+          <p>Solving the "Harvest Now, Decrypt Later" threat before quantum computers break RSA and ECC.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <span class="step-tag">Module 01</span>
+            <h3>AST &amp; TLS Readiness Scanner</h3>
+            <p>
+              Parses Python Abstract Syntax Trees to flag RSA, ECDSA, MD5, and SHA-1 without regex false positives,
+              generates drop-in PQC code fixes, and probes live TLS 1.3 servers.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="step-tag">Module 02</span>
+            <h3>Hybrid PQC Tunnel Proxy</h3>
+            <p>
+              Combines classical X25519 with post-quantum ML-KEM-768 via HKDF-SHA256, authenticated with
+              ML-DSA-65 signatures and encrypted with AES-256-GCM.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="step-tag">Module 03</span>
+            <h3>Wire-Size &amp; Latency Benchmarks</h3>
+            <p>
+              Measures real handshake latency in milliseconds and exact packet byte overhead comparing
+              classical elliptic-curve handshakes against hybrid post-quantum handshakes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Cryptographic Stack Specification</h2>
+          <p>Standardized algorithms implemented in the Q-Shield engine.</p>
+        </div>
+
+        <div class="table-box">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th>Security Layer</th>
+                <th>Algorithm</th>
+                <th>Standard</th>
+                <th>Wire Footprint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Classical Key Exchange</td>
+                <td>X25519 (ECDH)</td>
+                <td>RFC 7748</td>
+                <td>32 bytes public key</td>
+              </tr>
+              <tr>
+                <td>Post-Quantum KEM</td>
+                <td>ML-KEM-768</td>
+                <td>NIST FIPS 203</td>
+                <td>1,184 B pub / 1,088 B ciphertext</td>
+              </tr>
+              <tr>
+                <td>Post-Quantum Signature</td>
+                <td>ML-DSA-65</td>
+                <td>NIST FIPS 204</td>
+                <td>1,952 B pub / 3,309 B signature</td>
+              </tr>
+              <tr>
+                <td>Symmetric Encryption</td>
+                <td>AES-256-GCM + HKDF-SHA256</td>
+                <td>NIST SP 800-38D</td>
+                <td>12 B nonce + 16 B auth tag</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       PAGE 2: INTERACTIVE SECURITY WORKBENCH (3 TABS)
+  ========================================================== -->
+  <main id="view-workbench" class="view">
+    <div class="container workbench-wrap">
+      <div class="workbench-header">
+        <div>
+          <h1>Security Workbench</h1>
+          <p>Interactive testing console for Q-Shield's scanner, hybrid proxy, and benchmark suite.</p>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-back-home">
+          &larr; Project Overview
+        </button>
+      </div>
+
+      <!-- 3 Clean Tabs -->
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="scanner">1. Code &amp; TLS Scanner</button>
+        <button type="button" class="tab" data-tab="proxy">2. Hybrid PQC Proxy</button>
+        <button type="button" class="tab" data-tab="benchmarks">3. Benchmarks</button>
+      </div>
+
+      <!-- TAB 1: CODE & TLS SCANNER -->
+      <section id="panel-scanner" class="panel active">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-top">
+              <div>
+                <h3>Python AST Code Auditor</h3>
+                <p class="muted">Paste Python code to detect quantum-vulnerable algorithms.</p>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-load-sample">
+                Load Vulnerable Sample
+              </button>
+            </div>
+
+            <textarea id="code-editor" class="mono-box" rows="10" spellcheck="false">import hashlib
+from cryptography.hazmat.primitives.asymmetric import rsa, ec
+
+rsa_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+signing_key = ec.generate_private_key(ec.SECP256R1())
+tx_hash = hashlib.md5(b"transfer:5000").hexdigest()</textarea>
+
+            <div class="row-between mt-1">
+              <button type="button" class="btn btn-primary" id="btn-run-scan">Scan Code</button>
+              <div id="cbom-buttons" class="btn-group hidden">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-dl-json">Download JSON CBOM</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-dl-csv">Download CSV CBOM</button>
+              </div>
+            </div>
+
+            <div id="scan-output" class="output-area"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div>
+                <h3>Live HTTPS / TLS Prober</h3>
+                <p class="muted">Inspect TLS protocol version, cipher suite, and certificate issuer.</p>
+              </div>
+            </div>
+
+            <div class="inline-form">
+              <input type="text" id="tls-host" class="text-field" value="cloudflare.com" placeholder="Enter domain (e.g. google.com)" />
+              <button type="button" class="btn btn-primary" id="btn-run-tls">Probe</button>
+            </div>
+
+            <div class="quick-links">
+              <span>Presets:</span>
+              <button type="button" class="preset-btn" data-host="cloudflare.com">cloudflare.com</button>
+              <button type="button" class="preset-btn" data-host="google.com">google.com</button>
+              <button type="button" class="preset-btn" data-host="github.com">github.com</button>
+            </div>
+
+            <div id="tls-output" class="output-area">
+              <div class="placeholder-box">Enter a domain above and click <strong>Probe</strong>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: HYBRID PQC PROXY -->
+      <section id="panel-proxy" class="panel">
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <h3>Asyncio Hybrid PQC Tunnel</h3>
+              <p class="muted">Runs a live X25519 + ML-KEM-768 handshake signed with ML-DSA-65 and logs wire sizes.</p>
+            </div>
+            <button type="button" class="btn btn-primary" id="btn-run-proxy">Send Encrypted Traffic</button>
+          </div>
+
+          <label for="proxy-messages" class="input-label">Payloads to encrypt and tunnel (one per line):</label>
+          <textarea id="proxy-messages" class="mono-box" rows="3" spellcheck="false">POST /api/v1/transfer HTTP/1.1 | Amount: $25,000
+GET /api/v1/vault/keys HTTP/1.1 | Auth: Bearer qshield_token</textarea>
+
+          <div id="proxy-output" class="output-area">
+            <div class="placeholder-box">Click <strong>Send Encrypted Traffic</strong> to execute a live hybrid handshake and inspect packet sizes.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: BENCHMARKS -->
+      <section id="panel-benchmarks" class="panel">
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <h3>Classical vs. Hybrid PQC Benchmarks</h3>
+              <p class="muted">Compare average handshake latency (ms) and total wire size (bytes).</p>
+            </div>
+            <div class="inline-form">
+              <label for="bench-iters" class="muted">Iterations: <strong id="iter-val">300</strong></label>
+              <input type="range" id="bench-iters" min="100" max="1000" step="100" value="300" />
+              <button type="button" class="btn btn-primary" id="btn-run-bench">Run Benchmark</button>
+            </div>
+          </div>
+
+          <div id="bench-output" class="output-area">
+            <div class="placeholder-box">Choose iteration count and click <strong>Run Benchmark</strong>.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Q-Shield — Post-Quantum Cryptography Readiness Scanner &amp; Hybrid Proxy
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
